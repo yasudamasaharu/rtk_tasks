@@ -1,10 +1,14 @@
 import React from 'react';
+import './index.css';
+import App from './App';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
+import store from './app/store';
+// import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
-import './index.css';
+
+import Login from './features/login/Login';
+import { Route, BrowserRouter } from 'react-router-dom';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -12,7 +16,10 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <Route exact path="/" component={Login} />
+        <Route exact path="/tasks" component={App} />
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );
